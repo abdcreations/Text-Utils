@@ -1,24 +1,34 @@
-import logo from './logo.svg';
+// import logo from './logo.svg';
+import React, {useState} from 'react'
+
+
 import './App.css';
+import Navbar from './Components/Navbar.js';
+import TextForm from './Components/TextForm';
 
 function App() {
+
+  const handleClick = () => {
+    if(mode === 'dark') {
+      setMode('light');
+      setTextColor('dark');
+      setBtn('Enable Dark Mode');
+    }
+    else {
+      setMode('dark');
+      setTextColor('light');
+      setBtn('Enable Light Mode');
+  }
+}
+
+  const[mode,setMode] = useState('light');
+  const[TextColor,setTextColor] = useState('dark');
+  const[btn,setBtn] = useState('Enable Dark Mode');
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+     <Navbar title = "TextUtils" mode = {mode} handleClick = {handleClick} TextColor = {TextColor} btn = {btn}/>
+     <TextForm heading = "Enter Text Here"/>
+    </>
   );
 }
 
